@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+   <h1>Latest:</h1>
+   <div class="row">
+      {% for offer in offers %}
+        <div class="col-sm-6">
+          <div class="card text-center mt-3">
+            <div class="card-header">
+              {{offer.location}} - {{offer.contract}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{offer.job_title}}</h5>
+              <p class="card-text">{{offer.description}}</p>
+              <a href="#" class="btn btn-primary">view</a>
+            </div>
+            <div class="card-footer text-muted">
+                {{offer.company}}
+            </div>
+          </div>
+       </div>
+      {% endfor %}
+   </div>
+</div>
+{% endblock %}
