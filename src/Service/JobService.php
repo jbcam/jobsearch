@@ -39,12 +39,13 @@ class JobService
     $json_a = json_decode($response->getBody(), true)['resultats'];
     foreach ($json_a as $job_offer) {
       $offer['job_title'] = $job_offer['appellationlibelle'];
-      $offer['description']= $job_offer['description'];
+      $offer['description']= $job_offer['description'] ? $job_offer['description'] : "";
       if (array_key_exists('entreprise', $job_offer)) {
-        $offer['company'] = array_key_exists('nom', $job_offer['entreprise']) ? $job_offer['entreprise']['nom'] : "";
+        $offer['company'] = array_key_exists('nom', $job_offer['entreprise']) ? $job_offer['entreprise']['nom'] : "Anonyme";
       }
       $offer['location'] = $job_offer['lieuTravail']['libelle'];
       $offer['contract'] = $job_offer['typeContrat'];
+      $offer['url']= $job_offer['origineOffre']['urlOrigine'] ? $job_offer['origineOffre']['urlOrigine'] : "";
 
 
 

@@ -3,22 +3,28 @@
 {% block body %}
 
 <div class="container">
-   <h1>Latest:</h1>
    <div class="row">
       {% for offer in offers %}
-        <div class="col-sm-6">
+        <div class="col-sm-6 d-flex align-items-stretch">
           <div class="card text-center mt-3">
             <div class="card-header">
-              {{offer.location}} - {{offer.contract}}
+              {{offer.location}} / {{offer.contract}}
             </div>
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{offer.job_title}}</h5>
-              <p class="card-text">{{offer.description}}</p>
-              <a href="#" class="btn btn-primary">view</a>
+              <div class="flex-grow-1">
+                <p class="card-text flex-grow-1">{{offer.description}}</p>
+              </div>
+              <a href={{offer.url}} target=”_blank” class="btn btn-primary mt-2">view</a>
             </div>
-            <div class="card-footer text-muted">
-                {{offer.company}}
-            </div>
+              <div class="card-footer text-muted">
+                {% if offer.company is defined  %}
+                  {{offer.company }}
+                {% else %}
+                  Anonyme
+                {% endif %}
+              </div>
+
           </div>
        </div>
       {% endfor %}
